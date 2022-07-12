@@ -6,18 +6,31 @@ namespace Benchmark.TestsLibrary.StringTests
     public class StartWithTests
     {
         private const string TextTemplate = "Test string";
-        private const string SearchedValue = "T";
+        private const string SearchedText = "T";
+        private const char SearchedCharacter = 'T';
 
         [Benchmark]
-        public bool StartsWith()
+        public bool StartsWithString()
         {
-            return TextTemplate.StartsWith(SearchedValue);
+            return TextTemplate.StartsWith(SearchedText);
         }
 
         [Benchmark]
-        public bool StarstWithOrdinal()
+        public bool StarstWithStringOrdinal()
         {
-            return TextTemplate.StartsWith(SearchedValue, StringComparison.Ordinal);
+            return TextTemplate.StartsWith(SearchedText, StringComparison.Ordinal);
+        }
+
+        [Benchmark]
+        public bool StarstWithStringInvariant()
+        {
+            return TextTemplate.StartsWith(SearchedText, StringComparison.InvariantCulture);
+        }
+
+        [Benchmark]
+        public bool StartsWithCharacter()
+        {
+            return TextTemplate.StartsWith(SearchedCharacter);
         }
     }
 }
